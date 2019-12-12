@@ -3,11 +3,10 @@
 session_start();
 include('functions.php');
 checkSessionId();
-$id   = $_GET['id'];
 //$user_id = $_GET['user_id'];
-// $task_id = $_GET['task_id'];
+$lid = $_GET['lid'];
+$lpw = $_GET['lpw'];
 $user_id = $_SESSION['id'];
-
 //2. DB接続します(エラー処理追加)
 // session_start();
 // include('functions.php');
@@ -16,7 +15,7 @@ $user_id = $_SESSION['id'];
 $pdo = connectToDb();
 
 //3．データ登録SQL作成
-$sql = 'DELETE FROM php02_table WHERE id=:id';
+$sql = 'DELETE FROM user_table WHERE id=:id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $status = $stmt->execute();
@@ -26,6 +25,6 @@ if ($status == false) {
   showSqlErrorMsg($stmt);
 } else {
   //select.phpへリダイレクト
-  header('Location: select.php');
+  header('Location: user_select.php');
   exit;
 }

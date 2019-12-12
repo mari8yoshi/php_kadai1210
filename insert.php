@@ -1,8 +1,9 @@
 <?php
 include('functions.php');
-
+checkSessionId();
+$user_id = $_SESSION['id'];
 // 入力チェック
-if (
+if ( 
   !isset($_POST['task']) || $_POST['task'] == '' ||
   !isset($_POST['deadline']) || $_POST['deadline'] == ''
 ) {
@@ -10,6 +11,7 @@ if (
 }
 
 //POSTデータ取得
+
 $task = $_POST['task'];
 $deadline = $_POST['deadline'];
 $comment = $_POST['comment'];
@@ -18,8 +20,8 @@ $comment = $_POST['comment'];
 $pdo = connectToDb();
 
 //データ登録SQL作成
-$sql = 'INSERT INTO php02_table(id, task, deadline, comment, indate)
-VALUES(NULL, :a1, :a2, :a3, sysdate())';
+$sql = 'INSERT INTO php02_table(id,task, deadline, comment, indate)
+VALUES(id, :a1, :a2, :a3,sysdate())';
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':a1', $task, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)

@@ -20,8 +20,7 @@ $id = $_GET['id'];
 $pdo = connectToDb();
 
 //データ登録SQL作成，指定したidのみ表示する
-//$sql='SELECT * FROM php02_table LEFT OUTER JOIN user_table ON php02_table.id = user_table.id';
- $sql = 'SELECT * FROM php02_table WHERE id=:id';
+$sql = 'SELECT * FROM user_table WHERE id=:id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $status = $stmt->execute();
@@ -42,7 +41,7 @@ if ($status == false) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>todo更新ページ</title>
+  <title>USER更新ページ</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <style>
     div {
@@ -56,7 +55,7 @@ if ($status == false) {
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">todo更新</a>
+      <a class="navbar-brand" href="#">USER更新</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -73,9 +72,9 @@ if ($status == false) {
               <li class="nav-item">
                 <a class="nav-link" href="user_update.php">user登録</a>
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="user_select.php">user管理</a>
-              </li> -->
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="logout.php">ログアウト</a>
               </li>
@@ -84,19 +83,20 @@ if ($status == false) {
     </nav>
   </header>
 
-  <form method="post" action="update.php">
+  <form method="post" action="user_detail_act.php">
     <div class="form-group">
-      <label for="task">Task</label>
-      <input type="text" class="form-control" id="task" name="task" placeholder="Enter task" value="<?= $rs['task'] ?>">
+      <label for="lid">ID</label>
+      <input type="text" class="form-control" id="lid" name="lid" placeholder="Enter task" value="<?= $rs['lid'] ?>">
     </div>
     <div class="form-group">
-      <label for="deadline">Deadline</label>
-      <input type="date" class="form-control" id="deadline" name="deadline" value="<?= $rs['deadline'] ?>">
+      <label for="lpw">PW</label>
+      <input type="text" class="form-control" id="lpw" name="lpw" value="<?= $rs['lpw'] ?>">
     </div>
     <div class="form-group">
-      <label for="comment">Comment</label>
-      <textarea class="form-control" id="comment" name="comment" rows="3"><?= $rs['comment'] ?></textarea>
+      <label for="kanri_flg">管理者1・通常0</label>
+      <input type="text" class="form-control" id="kanri_flg" name="kanri_flg" value="<?= $rs['kanri_flg'] ?>">
     </div>
+
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>

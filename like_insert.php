@@ -4,6 +4,8 @@
 
 // 関数ファイルの読み込み
 include('functions.php');
+checkSessionId();
+
 
 // GETデータ取得
 // $user_id = $_GET['user_id'];

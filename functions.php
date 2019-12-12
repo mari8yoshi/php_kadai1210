@@ -15,7 +15,7 @@ function connectToDb()
 }
 
 // テーブル名
-//$todo_table = 'UserData';
+$todo_table = 'User_table';
 
 //SQL処理エラー
 function showSqlErrorMsg($stmt)
@@ -29,17 +29,13 @@ function h($str)
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-function chk_ssid()
+function checkSessionId()
 {
-  if (!isset($_SESSION['chk_ssid']) || $_SESSION['chk_ssid'] != session_id())
+  if (!isset($_SESSION['session_id']) || $_SESSION['session_id'] != session_id())
     header('Location: login.php');
   else {
     session_regenerate_id(true);
-    $_SESSION['chk_ssid'] = session_id();
+    $_SESSION['session_id'] = session_id();
   }
 }
-function menu()
-{
 
-  $menu = '<li class="nav-item"><a class="nav-link" href="logout.php">ログアウト</a></li>';
-}

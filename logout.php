@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["EMAIL"])) {
+if (isset($_SESSION["id"])) {
   echo 'Logoutしました。';
 } else {
   echo 'SessionがTimeoutしました。';
@@ -22,8 +22,8 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 //Cookie情報の削除
-setcookie('email','',time()-42000);
-setcookie('password','',time()-42000);
+setcookie('lid','',time()-42000);
+setcookie('lpw','',time()-42000);
 
 header('Location: login.php');
 exit();

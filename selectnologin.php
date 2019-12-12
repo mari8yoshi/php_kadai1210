@@ -1,10 +1,10 @@
 <?php
 session_start();
 include('functions.php');
-checkSessionId();
+//checkSessionId();
 // ユーザーidの指定
 //$user_id=1;
-$user_id = $_SESSION['id'];
+//$user_id = $_SESSION['id'];
 //var_dump($user_id);
 
 //DB接続
@@ -39,11 +39,11 @@ if ($status == false) {
     $view .= '<p>' . $result['deadline'] . '-' . $result['task'] . '</p>';
     $view .= '<p>' . $result['comment'] . '</p>';
     // いいねボタン
-    $view .= '<a href="like_insert.php?task_id=' . $result['id'] . '&user_id=' . $user_id . '" class="badge badge-info">Like' . $result['cnt'] . '</a>';
+    // $view .= '<a href="like_insert.php?task_id=' . $result['id'] . '&user_id=' . $user_id . '" class="badge badge-info">Like' . $result['cnt'] . '</a>';
 
-    $view .= '<a href="detail.php?id=' . $result['id'] . '" class="badge badge-primary">Edit</a>';
-    $view .= '<a href="delete.php?id=' . $result['id'] . '" class="badge badge-danger">Delete</a>';
-    $view .= '</li>';
+    $view .= '<a href="detail_nologin.php?id=' . $result['id'] . '" class="badge badge-primary">Edit</a>';
+    // $view .= '<a href="delete.php?id=' . $result['id'] . '" class="badge badge-danger">Delete</a>';
+    // $view .= '</li>';
   }
 }
 ?>
@@ -86,8 +86,12 @@ if ($status == false) {
             <a class="nav-link" href="user_update.php">user登録</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="user_select.php">user管理</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="logout.php">ログアウト</a>
           </li>
+          <a>こんにちは名無しさん</p></a>
         </ul>
       </div>
     </nav>

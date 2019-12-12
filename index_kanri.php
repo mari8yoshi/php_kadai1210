@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">todo登録</a>
+                        <a class="nav-link" href="index_kanri.php">todo登録</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="select.php">todo一覧</a>
@@ -34,7 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="user_update.php">user登録</a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_select.php">user管理</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">ログアウト</a>
                     </li>

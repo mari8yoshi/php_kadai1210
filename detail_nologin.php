@@ -6,7 +6,7 @@ session_start();
 include('functions.php');
 
 // ログイン状態のチェック
-checkSessionId();
+//checkSessionId();
 
 
 
@@ -20,8 +20,7 @@ $id = $_GET['id'];
 $pdo = connectToDb();
 
 //データ登録SQL作成，指定したidのみ表示する
-//$sql='SELECT * FROM php02_table LEFT OUTER JOIN user_table ON php02_table.id = user_table.id';
- $sql = 'SELECT * FROM php02_table WHERE id=:id';
+$sql = 'SELECT * FROM php02_table WHERE id=:id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $status = $stmt->execute();
@@ -73,9 +72,9 @@ if ($status == false) {
               <li class="nav-item">
                 <a class="nav-link" href="user_update.php">user登録</a>
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="user_select.php">user管理</a>
-              </li> -->
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="logout.php">ログアウト</a>
               </li>
@@ -87,15 +86,15 @@ if ($status == false) {
   <form method="post" action="update.php">
     <div class="form-group">
       <label for="task">Task</label>
-      <input type="text" class="form-control" id="task" name="task" placeholder="Enter task" value="<?= $rs['task'] ?>">
+      <input readonly type="text" class="form-control" id="task" name="task" placeholder="Enter task" value="<?= $rs['task'] ?>">
     </div>
     <div class="form-group">
       <label for="deadline">Deadline</label>
-      <input type="date" class="form-control" id="deadline" name="deadline" value="<?= $rs['deadline'] ?>">
+      <input readonly type="date" class="form-control" id="deadline" name="deadline" value="<?= $rs['deadline'] ?>">
     </div>
     <div class="form-group">
       <label for="comment">Comment</label>
-      <textarea class="form-control" id="comment" name="comment" rows="3"><?= $rs['comment'] ?></textarea>
+      <textarea readonly class="form-control" id="comment" name="comment" rows="3"><?= $rs['comment'] ?></textarea>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Submit</button>
